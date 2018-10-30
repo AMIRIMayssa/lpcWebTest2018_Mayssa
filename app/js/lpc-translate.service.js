@@ -1,13 +1,16 @@
 angular.module('LpcWebTest2018')
     .service('LpcTranslateService',['$http','$rootScope',function($http,$rootScope){
         var
-            //TODO
-            setPropertiesUrlImpl = function(url){
-                //TODO
-            },
-            loadPropertiesImpl = function(){
-                //TODO
-            }
+           setPropertiesUrlImpl = function(url){
+                           return $http.get(url).success(function(data){
+                               $rootScope.data = data
+                           })
+                       },
+           loadPropertiesImpl = function(key,locale){
+
+                           return $rootScope.data[locale][key]
+                       }
+
 
         return {
             setPropertiesUrl : setPropertiesUrlImpl,
